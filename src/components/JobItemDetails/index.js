@@ -94,7 +94,7 @@ class JobItemDetails extends Component {
   renderSuccessJobView = () => {
     const {jobDetails, similarProductsData} = this.state
     const item = jobDetails
-    console.log(item.skills)
+
     return (
       <>
         <div className="item-details">
