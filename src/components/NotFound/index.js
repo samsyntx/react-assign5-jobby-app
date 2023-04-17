@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import './index.css'
 
 const NotFound = () => (
@@ -5,10 +6,11 @@ const NotFound = () => (
     <img
       src="https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png"
       alt="not found"
-      className="not-found-image"
+      className="not-found-img"
     />
+
     <h1 className="not-found-heading">Page Not Found</h1>
-    <p className="not-desc">
+    <p className="not-found-paragraph">
       We are sorry, the page you requested could not be found
     </p>
   </div>
