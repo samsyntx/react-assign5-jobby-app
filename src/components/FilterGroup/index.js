@@ -2,20 +2,13 @@ import {Component} from 'react'
 import './index.css'
 
 class FilterGroup extends Component {
-  state = {employmentTypeList: []}
-
-  ChangeCheckBoxStatus = event => {
+  ChangeCheckBoxStatus = uniqueId => {
     const {selectedCheckBox} = this.props
-    const {employmentTypeList} = this.state
-    console.log()
-    if (employmentTypeList.length > 0) {
-      selectedCheckBox(employmentTypeList.join('&'))
-    }
+    selectedCheckBox(uniqueId)
   }
 
   render() {
     const {employmentTypesList, salaryRangesList, updateSalary} = this.props
-    const {isChecked} = this.state
 
     return (
       <>
@@ -29,7 +22,7 @@ class FilterGroup extends Component {
               <input
                 type="checkbox"
                 id={each.employmentTypeId}
-                onChange={() => this.ChangeCheckBoxStatus(isChecked)}
+                onClick={() => this.ChangeCheckBoxStatus(each.employmentTypeId)}
               />
               <label htmlFor={each.employmentTypeId} className="checkbox-label">
                 {each.label}
@@ -38,6 +31,7 @@ class FilterGroup extends Component {
           ))}
         </ul>
         <hr className="filter-line-separator" />
+        <h1 className="category-heading">Salary Range</h1>
         <ul className="categories-list">
           {salaryRangesList.map(each => (
             <li key={each.salaryRangeId} className="employment-type-list-class">

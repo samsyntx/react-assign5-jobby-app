@@ -86,7 +86,7 @@ class JobItemDetails extends Component {
   }
 
   renderProgressView = () => (
-    <div className="loader-container" data-testid="loader">
+    <div data-testid="loader" className="loader-container">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )

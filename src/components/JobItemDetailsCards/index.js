@@ -157,13 +157,20 @@ class JobItemDetailsCards extends Component {
     this.getJobItemDetails()
   }
 
-  updateCheckboxes = id => {
-    this.setState(
-      prev => ({
-        checkedBoxes: [...prev.checkedBoxes, id],
-      }),
-      this.getJobItemDetails,
-    )
+  selectedCheckBox = id => {
+    const {checkedBoxes} = this.state
+    const isAlreadyIn = checkedBoxes.includes(id)
+    if (isAlreadyIn) {
+      const filterList = checkedBoxes.filter(each => each !== id)
+      this.setState({checkedBoxes: filterList}, this.getJobItemDetails)
+    } else {
+      this.setState(
+        prev => ({
+          checkedBoxes: [...prev.checkedBoxes, id],
+        }),
+        this.getJobItemDetails,
+      )
+    }
   }
 
   updateSalary = id => {
@@ -186,7 +193,7 @@ class JobItemDetailsCards extends Component {
           <FilterGroup
             salaryRangesList={salaryRangesList}
             employmentTypesList={employmentTypesList}
-            selectedCheckBox={this.updateCheckboxes}
+            selectedCheckBox={this.selectedCheckBox}
             updateSalary={this.updateSalary}
           />
         </div>
