@@ -77,11 +77,11 @@ class JobItemDetailsCards extends Component {
 
   renderSuccessJobView = () => {
     const {jobsList} = this.state
-    if (jobsList.length > 0) {
+    if (jobsList.length !== 0) {
       return (
         <ul className="jobs-list-order">
-          {jobsList.map(e => (
-            <JobItemCards key={e.id} item={e} />
+          {jobsList.map(item => (
+            <JobItemCards key={item.id} item={item} />
           ))}
         </ul>
       )

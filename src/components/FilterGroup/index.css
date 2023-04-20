@@ -1,7 +1,3 @@
-.checkbox-label {
-  color: #ffffff;
-}
-
 .category-heading {
   color: #ffffff;
   font-family: 'Roboto';
@@ -10,12 +6,15 @@
   margin-top: 24px;
 }
 
-@media screen and (min-width: 768px) {
-  .category-heading {
-    margin-top: 32px;
-  }
+.employment-type-list-class {
+  margin: 10px 0px 10px 0px;
 }
-
-.categories-list {
-  padding-left: 0;
+.checkbox-label {
+  color: #ffffff;
+  margin-left: 10px;
+}
+.filter-line-separator {
+  color: white;
+  width: 100%;
+  margin: 10px 0px 10px 0px;
 }

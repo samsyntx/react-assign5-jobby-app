@@ -1,71 +1,61 @@
+import {Component} from 'react'
 import './index.css'
 
-const FilterGroup = props => {
-  const {
-    employmentTypesList,
-    salaryRangesList,
-    selectedCheckBox,
-    updateSalary,
-  } = props
-  const renderTypesList = () =>
-    employmentTypesList.map(e => {
-      const onSelectCheckbox = () => {
-        selectedCheckBox(e.employmentTypeId)
-      }
-      return (
-        <li key={e.employmentTypeId}>
-          <input
-            type="checkbox"
-            id={e.employmentTypeId}
-            onClick={onSelectCheckbox}
-          />
-          <label htmlFor={e.employmentTypeId} className="checkbox-label">
-            {e.label}
-          </label>
-        </li>
-      )
-    })
-  const renderTypes = () => (
-    <>
-      <h1 className="category-heading">Type of Employment</h1>
-      <ul className="categories-list">{renderTypesList()}</ul>
-    </>
-  )
+class FilterGroup extends Component {
+  state = {employmentTypeList: []}
 
-  const renderRangesList = () =>
-    salaryRangesList.map(e => {
-      const onSelectSalary = () => {
-        updateSalary(e.salaryRangeId)
-      }
-      return (
-        <li key={e.salaryRangeId}>
-          <input
-            type="radio"
-            name="salary"
-            id={e.salaryRangeId}
-            onClick={onSelectSalary}
-          />
-          <label className="checkbox-label" htmlFor={e.salaryRangeId}>
-            {e.label}
-          </label>
-        </li>
-      )
-    })
+  ChangeCheckBoxStatus = event => {
+    const {selectedCheckBox} = this.props
+    const {employmentTypeList} = this.state
+    console.log()
+    if (employmentTypeList.length > 0) {
+      selectedCheckBox(employmentTypeList.join('&'))
+    }
+  }
 
-  const renderRanges = () => (
-    <>
-      <h1 className="category-heading">Salary Range</h1>
-      <ul className="categories-list">{renderRangesList()}</ul>
-    </>
-  )
+  render() {
+    const {employmentTypesList, salaryRangesList, updateSalary} = this.props
+    const {isChecked} = this.state
 
-  return (
-    <div>
-      {renderTypes()}
-      <hr className="line" />
-      {renderRanges()}
-    </div>
-  )
+    return (
+      <>
+        <h1 className="category-heading">Type of Employment</h1>
+        <ul className="categories-list">
+          {employmentTypesList.map(each => (
+            <li
+              key={each.employmentTypeId}
+              className="employment-type-list-class"
+            >
+              <input
+                type="checkbox"
+                id={each.employmentTypeId}
+                onChange={() => this.ChangeCheckBoxStatus(isChecked)}
+              />
+              <label htmlFor={each.employmentTypeId} className="checkbox-label">
+                {each.label}
+              </label>
+            </li>
+          ))}
+        </ul>
+        <hr className="filter-line-separator" />
+        <ul className="categories-list">
+          {salaryRangesList.map(each => (
+            <li key={each.salaryRangeId} className="employment-type-list-class">
+              <input
+                type="radio"
+                name="salary"
+                id={each.salaryRangeId}
+                onClick={() => updateSalary(each.salaryRangeId)}
+              />
+              <label className="checkbox-label" htmlFor={each.salaryRangeId}>
+                {each.label}
+              </label>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
 }
 
 export default FilterGroup

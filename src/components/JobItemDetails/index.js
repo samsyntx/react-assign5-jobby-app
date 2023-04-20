@@ -142,10 +142,10 @@ class JobItemDetails extends Component {
               <div>
                 <h1 className="job-description2">Skills</h1>
                 <ul className="skill-container">
-                  {item.skills.map(e => (
-                    <li key={e.name} className="skill-card">
-                      <img src={e.image_url} alt={e.name} />
-                      <p className="job-description-text1">{e.name}</p>
+                  {item.skills.map(eachItem => (
+                    <li key={eachItem.name} className="skill-card">
+                      <img src={eachItem.image_url} alt={eachItem.name} />
+                      <p className="job-description-text1">{eachItem.name}</p>
                     </li>
                   ))}
                 </ul>
